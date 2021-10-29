@@ -2,7 +2,7 @@
   <v-app>
     <v-navigation-drawer app temporary v-model="drawer">
       <v-list>
-        <v-list-item v-for="link in links" :key="link.title" :href="link.url">
+        <v-list-item v-for="link in links" :key="link.title" :to="link.url">
           <v-list-item-icon>
             <v-icon>{{ link.icon }}</v-icon>
           </v-list-item-icon>
@@ -25,12 +25,12 @@
           >Ad application</router-link> -->
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-tab
+      <v-tab 
         class="ma-2 hidden-sm-and-down"
         color="primary"
         v-for="link in links"
         :key="link.title"
-        :href="link.url"
+        :to="link.url"
       >
         <v-icon dark left>{{ link.icon }}</v-icon
         >{{ link.title }}
