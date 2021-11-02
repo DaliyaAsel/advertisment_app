@@ -19,13 +19,13 @@
         @click="drawer = !drawer"
         class="hidden-md-and-up"
       ></v-app-bar-nav-icon>
-      <v-toolbar-title
-        >Ad application
-        <!-- <router-link to="/" tag="span" class="pointer"
-          >Ad application</router-link> -->
+      <v-toolbar-title>
+        <router-link to="/" tag="span" class="pointer"
+          >Ad application</router-link
+        >
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-tab 
+      <v-tab
         class="ma-2 hidden-sm-and-down"
         color="primary"
         v-for="link in links"
@@ -36,7 +36,6 @@
         >{{ link.title }}
       </v-tab>
     </v-app-bar>
-
     <v-main>
       <router-view></router-view>
     </v-main>
@@ -79,3 +78,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.pointer {
+  cursor: pointer;
+}
+</style>
