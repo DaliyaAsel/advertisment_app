@@ -58,7 +58,7 @@ export default {
   bottom: 50px;
   background: rgba(0, 0, 0, 0.5);
   transform: translate(-50%, 0);
-  padding: 5px 15px;
+  padding: 5px 10px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
