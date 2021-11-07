@@ -37,7 +37,7 @@ export default {
         {
           id: "fdfd",
           name: "Asel",
-          phone: "8-923-730-0671",
+          phone: "8-923-730-0000",
           adId: "23",
           done: false,
         },
