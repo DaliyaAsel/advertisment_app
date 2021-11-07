@@ -10,10 +10,11 @@
   "dependencies": {
     "@mdi/font": "^6.4.95",
     "core-js": "^3.6.5",
+    "firebase": "^9.3.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.4.0",
-    "vuex": "^3.4.0"
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

@@ -38,7 +38,11 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" @click="onSubmit" :disabled="!valid"
+            <v-btn
+              color="primary"
+              @click="onSubmit()"
+              :disabled="!valid || loading"
+              :loading="loading"
               >Create account</v-btn
             >
           </v-card-actions>
@@ -69,10 +73,15 @@ export default {
           "Password must be equal or more than 6 characters",
       ],
       confirmPasswordRules: [
-         (v) => !!v || "Password is required",
-         (v) => v === this.password || 'Password should match'
+        (v) => !!v || "Password is required",
+        (v) => v === this.password || "Password should match",
       ],
     };
+  },
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
+    },
   },
   methods: {
     onSubmit() {
@@ -82,7 +91,13 @@ export default {
           password: this.password,
         };
 
-        console.log(user);
+        this.$store
+          .dispatch("registerUser", user)
+          .then(() => {
+            //редирект на главную страницу, если пользователь создан
+            this.$router.push("/");
+          })
+          .catch(() => {});
       }
     },
   },
