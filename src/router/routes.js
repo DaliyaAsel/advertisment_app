@@ -64,29 +64,4 @@ export default new Router({
   mode: 'history'
 })
 
-// router.beforeEach((to, from, next) => {
-//   const currentUser = firebase.auth().currentUser
-//   const requireAuth  = to.matched.some(record => record.meta.requireAuth)
 
-//   console.log(currentUser);
-//   console.log(requireAuth);
-//   next('/login?loginError=true')
-//   // if (requireAuth && !currentUser) {
-//   //   next('/login?loginError=true')
-//   // } else {
-//   //   next()
-//   // }
-// })
-
-
-
-
-// export default router;
-
-// // export default function (to, from, next) {
-// //   if (store.getters.user) {
-// //     next()
-// //   } else {
-// //     next('/login?loginError=true')
-// //   }
-// // }
