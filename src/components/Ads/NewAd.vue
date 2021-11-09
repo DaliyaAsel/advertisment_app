@@ -21,14 +21,22 @@
           ></v-textarea>
         </v-form>
         <v-flex xs12 class="mb-5">
-          <v-btn class="warning"
+          <v-btn class="warning" @click="triggerUpload"
             >Upload
             <v-icon right dark> mdi-cloud-upload </v-icon>
           </v-btn>
+          <input
+            ref="fileInput"
+            type="file"
+            style="display: none"
+            accept="image/*"
+            @change="onFileChange"
+          />
         </v-flex>
         <v-layout>
           <v-flex xs12>
-            <img src="" height="100px" />
+            <img :src="imageSrc" height="100px" v-if="imageSrc" />
+            <!-- если imageSrc есть, то передаем его в забайденный :src -->
           </v-flex>
         </v-layout>
         <v-layout>
@@ -38,7 +46,11 @@
         </v-layout>
         <v-flex xs12>
           <v-spacer>
-            <v-btn class="success" @click="createAd" :disabled="!valid"
+            <v-btn
+              class="success"
+              @click="createAd"
+              :loading="loading"
+              :disabled="!valid || !image || loading"
               >Create ad</v-btn
             >
           </v-spacer>
@@ -56,22 +68,61 @@ export default {
       description: "",
       promo: false,
       valid: false,
+      image: null,
+      imageSrc: "",
+      uploadValue: 0
     };
+  },
+  computed: {
+    // достаем состояние приложения при добавлении нового обьявления
+    loading() {
+      return this.$store.getters.loading;
+    },
   },
   methods: {
     createAd() {
-      if (this.$refs.form.validate()) {
+      if (this.$refs.form.validate() && this.image) {
         //logic
         const ad = {
           title: this.title,
           description: this.description,
           promo: this.promo,
-          imageSrc:
-            "https://timeweb.com/ru/community/article/1d/1d959c23e81024374895da086675b298.jpg",
+          image: this.image  //для загрузки изображения на сервер
         };
-        this.$store.dispatch('craateAd', ad);
+
+        this.$store
+          .dispatch("craateAd", ad)
+          // после того как создалось обьявлеение, мы переходим на стр с обьявлениями
+          .then(() => {
+            this.$router.push("/list");
+          })
+          .catch(() => {});
       }
     },
+    // метод, который добавляет файлы при добавлении обьявления по кнопку Upload
+    triggerUpload() {
+      this.$refs.fileInput.click();
+    },
+    onFileChange() {
+      // file - хранится, то изображение, которое будет загружаться к нам на фронтенд
+      const file = event.target.files[0];
+
+      // new FileReader - это стандартный библиотека в JS
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.imageSrc = reader.result;
+      };
+      // readAsDataURL -это метод у FileReader, куда передаем файл. который подгрузили
+      reader.readAsDataURL(file); //выполняется асинхронно эта операция, поэтому на нее нужно поставить прослушку событий reader.onload
+      this.image = file;
+   
+    },
+
+    previewImage(event){
+       this.uploadValue = 0;
+       this.image =  null;
+       this.imageSrc = event.target.files[0];
+    }
   },
 };
 </script>

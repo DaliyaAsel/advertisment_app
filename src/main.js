@@ -6,7 +6,8 @@ import store from '@/store'
 import vuetify from '@/plugins/vuetify'
 import firebase from "firebase/compat/app"
 import  "firebase/compat/auth"
-// import "firebase/compat/firestore"
+
+
 
 
 
@@ -36,6 +37,8 @@ new Vue({
         this.$store.dispatch('autoLoginUser', user)
       }
     })
+
+    this.$store.dispatch('fetchAds')
   },
   
 }).$mount('#app')
