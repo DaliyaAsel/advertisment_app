@@ -45,6 +45,11 @@ vue install @mdi/js -D
 npm install firebase
 ```
 
+### Axios
+```
+npm install axios
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).    
 
