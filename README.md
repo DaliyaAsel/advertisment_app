@@ -56,8 +56,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Stack:    
 :green_circle: VUE    
 :green_circle: Vue Router   
-:green_circle: Vuex 
-:green_circle: CSS3        
+:green_circle: Vuex     
+:green_circle: CSS3            
 :green_circle: HTML5        
 :green_circle: Vuetify      
 :green_circle: Firebase    
