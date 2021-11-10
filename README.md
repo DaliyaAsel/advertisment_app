@@ -35,7 +35,7 @@ npm install vuex --save
 vue add vuetify
 ```
 
-### Vuetify icon
+### Vuetify icons
 ```
 vue install @mdi/js -D
 ```
